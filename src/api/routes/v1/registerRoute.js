@@ -6,9 +6,9 @@ const authController = require('../../controllers/registerController');
 
 // Validation rules
 const registerValidation = [
-  body('username')
-    .notEmpty().withMessage('Username is required')
-    .isLength({ min: 3 }).withMessage('Username must be at least 3 characters'),
+  // body('username')
+  //   .notEmpty().withMessage('Username is required')
+  //   .isLength({ min: 3 }).withMessage('Username must be at least 3 characters'),
   body('email')
     .notEmpty().withMessage('Email is required')
     .isEmail().withMessage('Invalid email format'),
