@@ -43,11 +43,7 @@ module.exports = {
       phone_number,
       first_name,
       last_name,
-      profile_picture,
-      cover_picture,
-      birth_date,
-      gender,
-      bio
+      profile_picture
     ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
     RETURNING id, email, first_name, last_name, created_at`,
       [
@@ -58,10 +54,6 @@ module.exports = {
         userData.first_name,
         userData.last_name,
         userData.profile_picture || null,
-        userData.cover_picture || null,
-        userData.birth_date || null,
-        userData.gender || null,
-        userData.bio || null,
       ]
     );
     return rows[0];
