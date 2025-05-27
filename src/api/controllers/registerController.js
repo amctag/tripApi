@@ -31,10 +31,10 @@ const registerController = {
       }
 
       // Check if username already exists
-      const usernameExists = await userModel.getByUsername(username);
-      if (usernameExists) {
-        return res.status(400).json({ error: "Username already exists" });
-      }
+      // const usernameExists = await userModel.getByUsername(username);
+      // if (usernameExists) {
+      //   return res.status(400).json({ error: "Username already exists" });
+      // }
 
       // Create new user
       const newUser = await userModel.create({
