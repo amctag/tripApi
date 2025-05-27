@@ -44,7 +44,7 @@ module.exports = {
       first_name,
       last_name,
       profile_picture
-    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING id, email, first_name, last_name, created_at`,
       [
         userData.email,
