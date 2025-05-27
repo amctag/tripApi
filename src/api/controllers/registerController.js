@@ -45,7 +45,7 @@ const registerController = {
         profile_picture
       });
 
-      return res.status(201).json({
+      return res.json({
         message: "User registered successfully",
         user: newUser,
       });
