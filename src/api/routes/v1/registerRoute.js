@@ -1,4 +1,3 @@
-// src/api/routes/v1/registerRoute.js
 const express = require('express');
 const router = express.Router();
 const { body } = require('express-validator');
@@ -23,7 +22,10 @@ const registerValidation = [
   body('last_name')
     .notEmpty().withMessage('Last name is required')
     .isLength({ min: 3 }).withMessage('Last name must be at least 3 characters'),
-  body('phone_number').optional().isMobilePhone(),
+  body('phone_number')
+    .notEmpty().withMessage('Phone number is required')
+    .isLength({ min: 6 }).withMessage('Phone number must be at least 6 characters')
+    .isMobilePhone().withMessage('Invalid phone number format'),
   body('profile_picture').optional().isString(),
   body('cover_picture').optional().isString(),
   body('birth_date').optional().isDate(),
