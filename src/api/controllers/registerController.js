@@ -17,11 +17,7 @@ const registerController = {
       last_name,
       country_code,  // Added new field
       phone_number,
-      profile_picture,
-      cover_picture,
-      birth_date,
-      gender,
-      bio,
+      profile_picture
     } = req.body;
 
     try {
@@ -46,11 +42,7 @@ const registerController = {
         last_name,
         country_code,  // Added new field
         phone_number,
-        profile_picture,
-        cover_picture,
-        birth_date,
-        gender,
-        bio,
+        profile_picture
       });
 
       return res.status(201).json({
