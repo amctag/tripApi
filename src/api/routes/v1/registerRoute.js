@@ -46,10 +46,10 @@ const registerValidation = [
     .isMobilePhone()
     .withMessage("Invalid phone number format"),
   body("profile_picture").optional().isString(),
-  body("cover_picture").optional().isString(),
-  body("birth_date").optional().isDate(),
-  body("gender").optional().isString(),
-  body("bio").optional().isString(),
+  // body("cover_picture").optional().isString(),
+  // body("birth_date").optional().isDate(),
+  // body("gender").optional().isString(),
+  // body("bio").optional().isString(),
 ];
 
 // Routes
