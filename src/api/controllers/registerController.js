@@ -11,7 +11,7 @@ const registerController = {
     }
 
     const {
-      username,
+      // username,
       email,
       password,
       first_name,
@@ -39,7 +39,7 @@ const registerController = {
 
       // Create new user
       const newUser = await userModel.create({
-        username,
+        // username,
         email,
         password, // Hash password? lOl
         first_name,
