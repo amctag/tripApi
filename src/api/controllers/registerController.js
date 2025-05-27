@@ -50,11 +50,12 @@ const registerController = {
         user: newUser,
       });
     } catch (error) {
-      console.error("Registration error:", error.message, error.stack);
-      return res
-        .status(500)
-        .json({ error: "Failed to create user, please try again." });
-    }
+  console.error("Registration error:", error.message, error.stack);
+  return res.status(500).json({ 
+    error: "Failed to create user, please try again.",
+    details: error.message // Include this only in development
+  });
+}
   },
 };
 
