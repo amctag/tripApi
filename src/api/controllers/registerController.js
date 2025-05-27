@@ -15,6 +15,7 @@ const registerController = {
       password,
       first_name,
       last_name,
+      country_code,  // Added new field
       phone_number,
       profile_picture,
       cover_picture,
@@ -43,6 +44,7 @@ const registerController = {
         password, // Hash password? lOl
         first_name,
         last_name,
+        country_code,  // Added new field
         phone_number,
         profile_picture,
         cover_picture,
