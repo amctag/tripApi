@@ -37,7 +37,6 @@ module.exports = {
   async create(userData) {
     const { rows } = await db.query(
       `INSERT INTO users (
-        username,
         email,
         password,
         phone_number,
@@ -48,10 +47,9 @@ module.exports = {
         birth_date,
         gender,
         bio
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-      RETURNING id, username, email, first_name, last_name, created_at`,
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      RETURNING id, email, first_name, last_name, created_at`,
       [
-        userData.username,
         userData.email,
         userData.password,
         userData.phone_number || null,
@@ -143,6 +141,21 @@ module.exports = {
   async updateLastLogin(userId) {
     const query = 'UPDATE users SET last_login = NOW() WHERE id = $1';
     await pool.query(query, [userId]);
+  },
+
+  /**
+   * Update user password
+   */
+  async updatePassword(id, newPassword) {
+    const { rows } = await db.query(
+      `UPDATE users SET
+        password = $1,
+        updated_at = NOW()
+      WHERE id = $2 AND deleted_at IS NULL
+      RETURNING id, email, phone_number`,
+      [newPassword, id]
+    );
+    return rows[0];
   },
 
 }; // End of User Model
