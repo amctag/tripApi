@@ -1,4 +1,3 @@
-// src/api/controllers/registerController.js
 const userModel = require("../models/userModel");
 const { validationResult } = require("express-validator");
 
@@ -57,14 +56,12 @@ const registerController = {
         user: newUser,
       });
     } catch (error) {
-      // console.error('Registration error:', error);
       console.error("Registration error:", error.message, error.stack);
       return res
         .status(500)
         .json({ error: "Failed to create user, please try again." });
     }
   },
-
 };
 
 module.exports = registerController;
