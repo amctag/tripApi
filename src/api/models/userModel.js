@@ -72,12 +72,7 @@ module.exports = {
         updated_at = NOW()
       WHERE id = $4 AND deleted_at IS NULL
       RETURNING id, email, first_name, last_name, profile_picture`,
-      [
-        userData.first_name,
-        userData.last_name,
-        userData.profile_picture,
-        id,
-      ]
+      [userData.first_name, userData.last_name, userData.profile_picture, id]
     );
     return rows[0];
   },
@@ -148,4 +143,23 @@ module.exports = {
     );
     return rows[0];
   },
+
+  /**
+   * Verify user password
+   * @param {number} id - User ID
+   * @param {string} password - Password to verify
+   * @returns {boolean} True if password matches, false otherwise
+   */
+  async verifyPassword(id, password) {
+    const { rows } = await db.query(
+      `SELECT id FROM users 
+     WHERE id = $1 
+     AND password = $2
+     AND deleted_at IS NULL
+     AND is_active = 1`,
+      [id, password]
+    );
+    return rows.length > 0; // Returns true if user with matching password exists
+  },
+
 }; // End of User Model
