@@ -46,12 +46,36 @@ module.exports = {
    */
   async updateUser(req, res) {
     try {
+      // Validate input
+      const { first_name, last_name, profile_picture } = req.body;
+
+      // Check if first_name is provided and meets length requirement
+      if (first_name && first_name.length < 3) {
+        return res.status(400).json({
+          error: "First name must be at least 3 characters long",
+        });
+      }
+
+      // Check if last_name is provided and meets length requirement
+      if (last_name && last_name.length < 3) {
+        return res.status(400).json({
+          error: "Last name must be at least 3 characters long",
+        });
+      }
+
       // Only allow updating these fields
       const updateData = {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        profile_picture: req.body.profile_picture,
+        first_name,
+        last_name,
+        profile_picture: profile_picture || null, // Set to null if empty or undefined
       };
+
+      // Remove fields that weren't provided in the request
+      Object.keys(updateData).forEach((key) => {
+        if (updateData[key] === undefined) {
+          delete updateData[key];
+        }
+      });
 
       const updatedUser = await userModel.update(req.params.id, updateData);
       if (!updatedUser) {
