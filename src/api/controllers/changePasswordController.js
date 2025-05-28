@@ -13,16 +13,10 @@ const changePasswordController = {
 
       const { user_id, old_password, new_password } = req.body;
 
-      // Get user by ID
-      const user = await userModel.getById(user_id);
-
-      // Check if user exists
-      if (!user) {
-        return res.status(404).json({ error: "User not found" });
-      }
-
-      // Verify old password (plain text comparison as in your login)
-      if (user.password !== old_password) {
+      // Verify old password using the new dedicated method
+      const isPasswordCorrect = await userModel.verifyPassword(user_id, old_password);
+      
+      if (!isPasswordCorrect) {
         return res.status(401).json({ error: "Old password is incorrect" });
       }
 
