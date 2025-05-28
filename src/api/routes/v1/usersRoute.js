@@ -82,15 +82,21 @@ router.get('/:id', userController.getUser);
  *             properties:
  *               first_name:
  *                 type: string
+ *                 minLength: 3
+ *                 description: Must be at least 3 characters long
  *               last_name:
  *                 type: string
+ *                 minLength: 3
+ *                 description: Must be at least 3 characters long
  *               profile_picture:
  *                 type: string
+ *                 nullable: true
+ *                 description: Can be empty or null
  *     responses:
  *       200:
  *         description: Updated user data
  *       400:
- *         description: Invalid input
+ *         description: Invalid input (either missing required fields or validation failed)
  *       404:
  *         description: User not found
  *       500:
