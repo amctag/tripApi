@@ -55,7 +55,7 @@ const loadApiRoutes = () => {
   const routesToLoad = [
     { file: 'loginRoute.js', path: '/login' },
     { file: 'registerRoute.js', path: '/register' },
-    // { file: 'usersRoute.js', path: '/users' },
+    { file: 'usersRoute.js', path: '/users' },
     { file: 'changePasswordRoute.js', path: '/change_password' },
   ];
 
