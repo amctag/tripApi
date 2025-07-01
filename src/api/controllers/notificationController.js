@@ -1,46 +1,26 @@
-// src/controllers/notificationController.js
+// src/api/controllers/notificationController.js
 const notificationService = require('../services/notificationService');
-const tokenModel = require('../models/tokenModel');
 
 module.exports = {
-  // ... existing send() method ...
-
   /**
-   * Send "Hello" to all devices
+   * Send a test broadcast notification
+   * @param {object} req - Express request object
+   * @param {object} res - Express response object
    */
-  async sendToAll(req, res) {
+  async sendTestBroadcast(req, res) {
     try {
-      // 1. Get all tokens from DB
-      const tokens = await tokenModel.getAllTokens();
-      if (tokens.length === 0) {
-        return res.status(404).json({ error: "No tokens found" });
-      }
-
-      // 2. Extract just the token strings
-      const deviceTokens = tokens.map(t => t.token);
-
-      // 3. Send static message
-      const result = await notificationService.sendBulkNotifications(
-        deviceTokens,
-        {
-          title: "Hello",
-          body: "This is a broadcast message to all devices"
-        }
-      );
-
-      if (!result.success) {
-        return res.status(400).json(result);
-      }
-
+      const result = await notificationService.sendBroadcast('Hello');
+      
       res.json({
         success: true,
-        sentTo: result.successCount + " devices",
-        failed: result.failureCount + " devices"
+        message: 'Broadcast sent successfully',
+        data: result
       });
     } catch (error) {
-      res.status(500).json({ 
+      console.error('Error in sendTestBroadcast:', error);
+      res.status(500).json({
         success: false,
-        error: error.message 
+        message: error.message || 'Failed to send broadcast'
       });
     }
   }
