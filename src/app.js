@@ -57,6 +57,8 @@ const loadApiRoutes = () => {
     { file: 'registerRoute.js', path: '/register' },
     { file: 'usersRoute.js', path: '/users' },
     { file: 'changePasswordRoute.js', path: '/change_password' },
+    { file: 'tokenRoute.js', path: '/token' },
+    { file: 'notificationRoute.js', path: '/notifications' },
   ];
 
   routesToLoad.forEach(({ file, path: subPath }) => {
