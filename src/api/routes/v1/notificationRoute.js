@@ -1,9 +1,9 @@
-// src/routes/v1/notificationRoute.js
+// src/api/routes/v1/notificationRoutes.js
 const express = require('express');
 const router = express.Router();
-const controller = require('../../controllers/notificationController');
+const notificationController = require('../../controllers/notificationController');
 
-router.post('/send/:tokenId', controller.send); // Existing
-router.post('/broadcast', controller.sendToAll); // New route
+// Send test broadcast
+router.post('/notifications/broadcast', notificationController.sendTestBroadcast);
 
 module.exports = router;
